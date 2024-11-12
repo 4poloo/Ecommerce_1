@@ -1,7 +1,7 @@
 import React from "react";
-import Fondo1 from "../../assets/Fondo1.png";
-import Fondo2 from "../../assets/Fondo2.png";
-import Fondo3 from "../../assets/Fondo3.png";
+import Fondo1 from "../../assets/Slide/Fondo1.png";
+import Fondo2 from "../../assets/Slide/Fondo2.png";
+import Fondo3 from "../../assets/Slide/Fondo3.png";
 import Slider from "react-slick";
 
 const ListaImagen = [
@@ -28,13 +28,13 @@ const ListaImagen = [
 const Principal = ({ handleOrderPopup }) => {
     var settings = {
     dots: false,
-    arrows: false,
+    arrows: true,
     infinite: true,
-    speed: 800,
+    speed: 850,
     slidesToScroll: 1,
     slidesToShow: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 5500,
     cssEase: "ease-in-out",
     pauseOnHover: false,
     pauseOnFocus: true,
@@ -46,7 +46,7 @@ const Principal = ({ handleOrderPopup }) => {
       {/* Patron de fondo */}
         <div className="h-[700px] w-[700px] bg-primary/40 absolute -top-1/2 right-0 rounded-3xl rotate-45 -z[8]"></div>
       {/* Contenedor principal del slider */}
-        <div className="container pb-8 sm:pb-0">
+        <div className="container mx-auto pb-8 sm:pb-0">
             <Slider {...settings}>
                 {ListaImagen.map((data) => (
                 <div key={data.id}>
