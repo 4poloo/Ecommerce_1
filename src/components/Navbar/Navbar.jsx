@@ -3,18 +3,20 @@ import Logo from "../../assets/Navbar/Logo.png";
 import { IoMdSearch } from "react-icons/io";
 import { FaCaretDown, FaCartShopping } from "react-icons/fa6";
 import DarkMode from "./DarkMode";
+import { Link } from 'react-router-dom'
+import { Link  as ScrollLink} from 'react-scroll'
 
 // Menú para la barra de navegación
 const Menu=[
 {
     id: 1,
     name: "Inicio",
-    link: "x",
+    link: "Principal",
 },
 {
     id: 2,
     name: "Destacados",
-    link: "#",
+    link: "PD",
 },
 {
     id: 3,
@@ -56,9 +58,10 @@ const Navbar = () => {
     <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40">
       {/* Top Navbar */}
         <div className="bg-primary/40 py-2">
+        <section id="Principal"></section>
             <div className="container flex justify-between items-center">
             <div>
-                <a href="#" className="font-bold text-2xl sm:text-3xl flex gap-2">
+                <a href="#Principal" className="font-bold text-2xl sm:text-3xl flex gap-2">
                 <img src={Logo} alt="Logo" className="w-10 uppercase" />
                 NOMBRE EMPRESA
                 </a>
@@ -91,7 +94,7 @@ const Navbar = () => {
                 {
                     Menu.map((data)=>(
                         <li key={data.id}>
-                            <a href={data.link} className="inline-block px-4 hover:text-primary duration-200">{data.name}</a>
+                            <ScrollLink to={data.link} smooth={true} duration={500} className="inline-block px-4 hover:text-primary duration-200">{data.name}</ScrollLink>
                         </li>
                     ))
                 }
