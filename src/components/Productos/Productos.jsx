@@ -5,7 +5,6 @@ import Card3 from "./../../assets/Cards/Card3.png"
 import Card4 from "./../../assets/Cards/Card4.png"
 import Card5 from "./../../assets/Cards/Card5.png"
 import { FaStar } from "react-icons/fa6"
-import { Link } from 'react-router-dom'
 
 const Productosdata = [
     {

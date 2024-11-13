@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar/Navbar"
 import Principal from './components/Principal/Principal'
 import Productos from './components/Productos/Productos'
 import PD from './components/ProductosDestacados/PD'
+import Contacto from './components/Contacto/Contacto'
 import AOS from"aos"
 import "aos/dist/aos.css"
 import { BrowserRouter as Router, Routes , Route } from 'react-router-dom'
@@ -25,6 +26,7 @@ const App = () => {
         <Principal />
         <Productos />
         <PD />
+        <Contacto />
     </div>
   )
 }

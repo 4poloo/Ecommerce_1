@@ -20,13 +20,13 @@ const Menu=[
 },
 {
     id: 3,
-    name: "Contacto",
-    link: "#",
+    name: "Acerca de nosotros",
+    link: "aboutus",
 },
 {
     id: 4,
-    name: "Acerca de Nosotros",
-    link: "#",
+    name: "Contacto",
+    link: "Contacto",
 },
 ];
 

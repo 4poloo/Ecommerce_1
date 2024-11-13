@@ -31,7 +31,8 @@ Se utilizara Node para el back y la programacion en general, estaremos al uso de
 - Carrito de compra
 - Inicio de sesión
 - Responsive pages
-
+- Map's Google API
+- API Whatsap
 
 # Demo
 
