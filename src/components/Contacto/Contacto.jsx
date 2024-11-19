@@ -1,50 +1,62 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
-import emailjs from 'emailjs-com';
+import React, { useState, useEffect, useCallback } from 'react'
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
+import emailjs from 'emailjs-com'
+import Barra from "./../../assets/BannerBar/BBar.jpg"
+import AOS from 'aos'; // Importa AOS si no está ya importado
+import 'aos/dist/aos.css';
 
 const containerStyle = {
     width: '400px',
     height: '400px',
-};
+}
 
 const center = {
   lat: -33.3977317810058, // Latitud del mapa
   lng: -70.65267181396484 // Longitud del mapa
-};
+}
+
+const BannerImg = {
+    backgroundImage: `url(${Barra})`,
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    height: "100%",
+    width: "100%",
+    };
 
 const Contacto = () => {
 const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-});
+})
 
 const [map, setMap] = useState(null);
 const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
-});
+})
 
 const onLoad = useCallback((mapInstance) => {
     setMap(mapInstance);
-}, []);
+}, [])
 
 const onUnmount = useCallback(() => {
     setMap(null);
-}, []);
+}, [])
 
 const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-};
+}
 
 const handleSubmit = (e) => {
     e.preventDefault();
 
     emailjs.send(
-        'service_3gv4tde',     // Reemplaza con tu Service ID de EmailJS
-        'template_190lwnk',    // Reemplaza con tu Template ID de EmailJS
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,    // ID del servicio
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID, // ID del template
         formData,
-        'FIIDAEVQNEqX_hVS9'    // Reemplaza con tu User ID de EmailJS
+        import.meta.env.VITE_EMAILJS_USER_ID    // Reemplaza con tu User ID de EmailJS (API)
     )
         .then(() => {
         alert('Mensaje enviado correctamente');
@@ -56,61 +68,69 @@ const handleSubmit = (e) => {
         });
     };
 
+    // Inicialización de AOS
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, // Duración de las animaciones
+            once: false, // Se ejecuta solo una vez al entrar en el viewport
+        });
+    }, []);
+
     if (!isLoaded) {
     return <div>Cargando mapa...</div>;
     }
 
     return (
-        <div className='min-h-[550px] flex justify-center items-center py-12 sm:py-0'>
-            <div className='container'>
-                <div className='text-center mb-10 max-w[600px] mx-auto'>
-                <section id='Contacto'>
-                    <h1 data-aos="fade-up" className='text-3xl font-bold'>Contacto</h1>
-                </section>
+        <div className="min-h-[650px] flex flex-col items-center py-12 sm:py-0">
+            {/* Título */}
+                <div className="text-center w-full" data-aos="zoom-in">
+                    <section id="Contacto" className='py-4 w-full relative ' style={BannerImg}>
+                        <h2 className="text-3xl font-bold dark:text-white text-gray-800">Contacto</h2>
+                    </section>
                 </div>
-                <div className='grid grid-cols-1 sm:grid-cols-2 gap-6 items-center'>
-                    {/* Mapa con marcador */}
-                    <div data-aos="fade-down-right" className='max-w-[400px] h-[350px] w-full mx-auto'>
-                        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={17} onLoad={onLoad} onUnmount={onUnmount}>
-                            <Marker position={center} />
-                        </GoogleMap>
+            <div className="container px-4">
+            {/* Contenido */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 mt-4">
+            {/* Mapa con marcador */}
+                <div className="w-full max-w-[400px] mx-auto lg:order-1 order-2 py-16" data-aos="fade-down-right">
+                    <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={17} onLoad={onLoad} onUnmount={onUnmount}>
+                        <Marker position={center} />
+                    </GoogleMap>
+                </div>
+            {/* Texto y formulario */}
+                <div className="flex flex-col gap-6 lg:order-2 order-1 mx-auto mt-4" data-aos="fade-down-left">
+                {/* Descripción */}
+                    <div className="font-semibold text-sm sm:text-base" >
+                        <p>Puedes acercarte a nuestro local para comprar y retirar, además de ver nuestras ofertas.</p>
+                        <p><strong>Ubicación:</strong> Arturo Rodriguez #2728, Recoleta, Santiago de Chile.</p>
+                        <p><strong>Horarios:</strong> 9:00 AM - 12:30 PM & 14:00 PM - 17:30 PM.</p>
+                        <p><strong>Celular:</strong> +56 964378329</p>
                     </div>
-                    <div>
-                        {/* Descrpcion Contacto */}
-                        <label>
-                            Puedes acercarte a nuestro local para comprar y retirar, ademas de ver nuestras ofertas.
-                            
-                            Ubicacion: Arturo Rodriguez #2728, Recoleta , Santiago de Chile.
-                            Horarios: 9:00 AM - 12:30 PM & 14:00 PM - 17.30 PM.
-                            Celular: +56 964378329
-                        </label>
-                        {/* Seccion Formulario */}
-                        <div data-aos="fade-down-left">
-                            <form onSubmit={handleSubmit} className='space-y-4'>
-                                <div>
-                                    <label className='block text-sm font-medium text-gray-600'>Nombre</label>
-                                    <input type="text" name="name" value={formData.name} onChange={handleChange} required className='mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm'/>
-                                </div>
-                                <div>
-                                    <label className='block text-sm font-medium text-gray-600'>Correo electrónico</label>
-                                    <input type="email" name="email" value={formData.email} onChange={handleChange} required className='mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm'/>
-                                </div>
-                                <div>
-                                    <label className='block text-sm font-medium text-gray-600'>Mensaje</label>
-                                    <textarea name="message" value={formData.message} onChange={handleChange} required className='mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm'/>
-                                </div>
-                                <div>
-                                    <button type="submit" className='w-full py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'>
-                                        Enviar Mensaje
-                                    </button>
-                                </div>
-                            </form>
+                {/* Formulario */}
+                    <form  onSubmit={handleSubmit} className="space-y-2 bg-white p-4 rounded-lg shadow-md dark:bg-gray-800">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-600 dark:text-white">Nombre</label>
+                                <input type="text" name="name" value={formData.name} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white"/>
                         </div>
-                    </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-600 dark:text-white">Correo electrónico</label>
+                            <input type="email" name="email" value={formData.email} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white"/>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-600 dark:text-white">Mensaje</label>
+                            <textarea name="message" value={formData.message} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" rows="5"/>
+                        </div>
+                        <div>
+                            <button type="submit" className="w-full py-2 px-4 bg-primary hover:bg-secondary text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                                Enviar Mensaje
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
+            </div>
         </div>
-    );
-};
+    )
+}
 
 export default Contacto;

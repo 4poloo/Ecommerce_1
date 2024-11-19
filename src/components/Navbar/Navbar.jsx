@@ -101,7 +101,7 @@ const Navbar = () => {
                 {/* Menu drop */} 
                 <li className="group relative cursor-pointer">
                     <a href="#" className="flex items-center gap-[2px] py-2">
-                        Categorias
+                        Catálogo
                         <span>
                             <FaCaretDown className="transition-all duration-200 group-hover:rotate-180" />
                         </span>
