@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api'
 import emailjs from 'emailjs-com'
 import Barra from "./../../assets/BannerBar/BBar.jpg"
+import WSP from "./../../assets/FT/Wa.me.png"
 import AOS from 'aos'; // Importa AOS si no está ya importado
 import 'aos/dist/aos.css';
 
@@ -105,6 +106,11 @@ const handleSubmit = (e) => {
                         <p><strong>Ubicación:</strong> Arturo Rodriguez #2728, Recoleta, Santiago de Chile.</p>
                         <p><strong>Horarios:</strong> 9:00 AM - 12:30 PM & 14:00 PM - 17:30 PM.</p>
                         <p><strong>Celular:</strong> +56 964378329</p>
+                        <br />
+                        <a href="https://wa.me/56964378329?text=Hola quiero información sobre los productos." target='_blank' className="flex items-center gap-2">
+                        <img src={WSP} className='max-h-[50px] max-w-[50px]' alt='WhatsApp'/>
+                            <strong>Contactanos por WhatsApp</strong>
+                        </a>
                     </div>
                 {/* Formulario */}
                     <form  onSubmit={handleSubmit} className="space-y-2 bg-white p-4 rounded-lg shadow-md dark:bg-gray-800">
