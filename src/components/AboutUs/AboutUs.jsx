@@ -41,7 +41,8 @@ const AboutUs = () => {
     }, []);
 
     const settings = {
-        dots: false,
+        dots: true,
+        once: true,
         arrows: false,
         infinite: true,
         speed: 850,
@@ -63,7 +64,7 @@ const AboutUs = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         opacity: "100%",
-        padding: "50px 0",
+        padding: "50px",
     };
 
     return (

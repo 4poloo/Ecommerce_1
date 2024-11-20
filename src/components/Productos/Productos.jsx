@@ -75,7 +75,7 @@ const Productos = () => {
                                 <a href={data.id_BD}><img src={data.img} alt="" className='h-[170px] w-[180px] object-cover rounded-md' /></a>
                                 <div>
                                     <a className='font-semibold' href='#' >{data.title}</a>
-                                    <p className='text-sm text-gray-600'>{data.Desc}</p>
+                                    <p className='text-sm text-gray-600 dark:text-gray-400'>{data.Desc}</p>
                                     <div className='flex items-center gap-1'>
                                         <FaStar className='text-yellow-400' />
                                         <span>{data.rating}</span>

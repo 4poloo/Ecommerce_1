@@ -45,13 +45,13 @@ const PD = () => {
                 {/* Cuerpo */}
                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 md:gap-5 place-items-center'>
                     {ProductosData.map((data) => (
-                        <div data-aos="zoom-in" className=' rounded-2xl bg-white dark:bg-gray-800 hover:bg-black/80 dark:hover:bg-primary hover:text-white relative shado-xl duration-300 group max-w-[300px]'>
+                        <div key={data.id} data-aos="zoom-in" className=' rounded-2xl bg-white dark:bg-gray-800 hover:bg-black/80 dark:hover:bg-primary hover:text-white relative shado-xl duration-300 group max-w-[300px]'>
                             {/* Imagen */}
-                            <div key={data.id} className='h-[100px]'>
+                            <div className='h-[100px]'>
                                 <img src={data.img} alt="" className='max-w-[180px] block mx-auto transform -translate-y-20 group-hover:scale-105 duration-300 drop-shadow-md' />
                             </div>
                             {/* Descripcion */}
-                            <div className='p-4 text-center' key={data.id}>
+                            <div className='p-4 text-center'>
                             {/* Rating */}
                                 <div className='w-full flex items-center justify-center gap-1'>
                                     <FaStar className='text-yellow-500' />

@@ -100,7 +100,7 @@ const handleSubmit = (e) => {
             {/* Texto y formulario */}
                 <div className="flex flex-col gap-6 lg:order-2 order-1 mx-auto mt-4" data-aos="fade-down-left">
                 {/* Descripción */}
-                    <div className="font-semibold text-sm sm:text-base" >
+                    <div className="font-semibold text-sm sm:text-base " >
                         <p>Puedes acercarte a nuestro local para comprar y retirar, además de ver nuestras ofertas.</p>
                         <p><strong>Ubicación:</strong> Arturo Rodriguez #2728, Recoleta, Santiago de Chile.</p>
                         <p><strong>Horarios:</strong> 9:00 AM - 12:30 PM & 14:00 PM - 17:30 PM.</p>
@@ -121,7 +121,7 @@ const handleSubmit = (e) => {
                             <textarea name="message" value={formData.message} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" rows="5"/>
                         </div>
                         <div>
-                            <button type="submit" className="w-full py-2 px-4 bg-primary hover:bg-secondary text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                            <button type="submit" className="w-full py-2 px-4 bg-primary hover:bg-secondary text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" aria-label="Correo electrónico">
                                 Enviar Mensaje
                             </button>
                         </div>
