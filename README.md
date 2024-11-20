@@ -65,7 +65,7 @@ Se utilizara Node para el back y la programacion en general, estaremos al uso de
 
 # Demo
 
-Insert link to demo
+https://ecomlimp-demo.netlify.app/
 
 # Autor
 
