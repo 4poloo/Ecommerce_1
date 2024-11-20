@@ -1,3 +1,15 @@
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/4poloo/Ecommerce_1?style=for-the-badge&logo=coder&color=%230CF07E)
+![Static Badge](https://img.shields.io/badge/React-18.3.1-blue?style=for-the-badge&logo=React&logoColor=%230CF07E&color=%230CF07E)
+![Static Badge](https://img.shields.io/badge/TailwindCSS-3.4.14-blue?style=for-the-badge&logo=TailwindCSS&logoColor=%230CF07E&color=%230CF07E)
+![Static Badge](https://img.shields.io/badge/Vite-5.4.10-blue?style=for-the-badge&logo=Vite&logoColor=%230CF07E&color=%230CF07E)
+
+--En Proceso--
+
+![Static Badge](https://img.shields.io/badge/Python-blue?style=for-the-badge&logo=python&logoColor=%230CF07E)
+![Static Badge](https://img.shields.io/badge/Django-blue?style=for-the-badge&logo=Django&logoColor=%230CF07E)
+
+
+
 # Ecommerce
 
 Pagina Ecommerce tipo plantilla para pymes o paginas de comercio que esten en busqueda de crear su primera pagina web y aumentar su alcance visual en la internet.
@@ -6,7 +18,7 @@ Pagina Ecommerce tipo plantilla para pymes o paginas de comercio que esten en bu
 
 **Cliente:** React, Vite, TailwindCSS
 
-**Server:** Node, MySQL
+En Desarrollo: [**Server:** Django, MySQL] 
 
 ### TailwindCSS
 
@@ -32,7 +44,24 @@ Se utilizara Node para el back y la programacion en general, estaremos al uso de
 - Inicio de sesión
 - Responsive pages
 - Map's Google API
-- API Whatsap
+- API Whatsapp
+
+
+## Dependencias para Produccion
+
+| Dependencia | Version                    |
+| :--------   | :------------------------- |
+| `@react-google-maps/api`   | **2.20.3** |
+| `AOS`   | **2.3.4** |
+| `emailjs-com`   | **3.2.0** |
+| `react`   | **18.3.1** |
+| `react-dom`   | **18.3.1** |
+| `react-icons`   | **5.3.0** |
+| `react-router-dom`   | **6.28.0** |
+| `react-scroll`   | **1.9.0** |
+| `react-slick`   | **0.30.2** |
+| `slick-carousel`   | **1.8.1** |
+
 
 # Demo
 
