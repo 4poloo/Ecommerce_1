@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from "./../../assets/Navbar/Logo.png"
-import { FaFacebook, FaInstagram, FaLocationArrow, FaMobile } from 'react-icons/fa6'
+import { FaFacebook, FaInstagram, FaLocationArrow, FaMobile, FaWhatsapp  } from 'react-icons/fa6'
 import Banner from "./../../assets/FT/FT.jpg"
 import { Link  as ScrollLink} from 'react-scroll'
 
@@ -81,6 +81,9 @@ const FT = () => {
                         </a>
                         <a href="#">
                             <FaFacebook className="text-3xl" />
+                        </a>
+                        <a href="https://wa.me/56964378329?text=Hola quiero información sobre los productos." target='_blank'>
+                            <FaWhatsapp className="text-3xl" />
                         </a>
                     </div>
                 <div className="mt-6">
