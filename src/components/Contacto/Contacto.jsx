@@ -60,7 +60,7 @@ const handleSubmit = (e) => {
     )
         .then(() => {
         alert('Mensaje enviado correctamente');
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ from_name: '', from_email: '', message: '' });
         })
         .catch((error) => {
         alert('Hubo un error al enviar el mensaje, intenta nuevamente.');
@@ -110,11 +110,11 @@ const handleSubmit = (e) => {
                     <form  onSubmit={handleSubmit} className="space-y-2 bg-white p-4 rounded-lg shadow-md dark:bg-gray-800">
                         <div>
                             <label className="block text-sm font-medium text-gray-600 dark:text-white">Nombre</label>
-                                <input type="text" name="name" value={formData.name} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white"/>
+                                <input type="text" name="from_name" value={formData.from_name} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white"/>
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-600 dark:text-white">Correo electrónico</label>
-                            <input type="email" name="email" value={formData.email} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white"/>
+                            <input type="email" name="from_email" value={formData.from_email} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white"/>
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-600 dark:text-white">Mensaje</label>
