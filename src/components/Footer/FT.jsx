@@ -9,7 +9,7 @@ const BannerImg = {
     backgroundPosition: "bottom",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    height: "290px",
+    height: "100%",
     width: "100%",
     }
 
