@@ -24,15 +24,23 @@ const App = () => {
   }, []);
 
   return (
-    <div className='bg-white dark:bg-gray-900 dark:text-white duration-200'>
+    <Router>
+      <div className='bg-white dark:bg-gray-900 dark:text-white duration-200'>
         <Navbar />
-        <Principal />
-        <Productos />
-        <PD />
-        <AboutUs />
-        <Contacto />
+          <Routes>
+            <Route path="/" element={
+              <>
+              <Principal />
+              <Productos />
+              <PD />
+              <AboutUs />
+              <Contacto />
+              </>
+            }/>
+          </Routes>
         <Footer />
-    </div>
+      </div>
+    </Router>
   )
 }
 
