@@ -68,7 +68,7 @@ const AboutUs = () => {
     };
 
     return (
-        <div className="min-h-[650px] flex flex-col items-center py-12 sm:py-0 ">
+        <div className="min-h-[650px] flex flex-col items-center  sm:py-0 ">
             {/* Título */}
             <div className="text-center w-full mt-12" data-aos="flip-left">
                 <section id="aboutus" className='py-4 w-full relative' style={BannerImg}>

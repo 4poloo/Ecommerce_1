@@ -7,8 +7,8 @@ import AOS from 'aos'; // Importa AOS si no está ya importado
 import 'aos/dist/aos.css';
 
 const containerStyle = {
-    width: '400px',
-    height: '400px',
+    width: "100%",
+    height: "100%",
 }
 
 const center = {
@@ -82,7 +82,7 @@ const handleSubmit = (e) => {
     }
 
     return (
-        <div className="min-h-[650px] flex flex-col items-center py-12 sm:py-0">
+        <div className="min-h-[650px] flex flex-col items-center ">
             {/* Título */}
                 <div className="text-center w-full" data-aos="zoom-in">
                     <section id="Contacto" className='py-4 w-full relative ' style={BannerImg}>
@@ -93,13 +93,13 @@ const handleSubmit = (e) => {
             {/* Contenido */}
             <div className="grid grid-cols-1 lg:grid-cols-2 mt-4">
             {/* Mapa con marcador */}
-                <div className="w-full max-w-[400px] mx-auto lg:order-1 order-2 py-16" data-aos="fade-down-right">
+                <div className="w-full h-[350px] sm:h-[500px] md:h-[600px] lg:h-[700px] mx-auto py-16" data-aos="fade-down-right">
                     <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={17} onLoad={onLoad} onUnmount={onUnmount}>
                         <Marker position={center} />
                     </GoogleMap>
                 </div>
             {/* Texto y formulario */}
-                <div className="flex flex-col gap-6 lg:order-2 order-1 mx-auto mt-4" data-aos="fade-down-left">
+                <div className="flex flex-col gap-6 lg:order-2 order-1 mx-auto mt-4 py-10" data-aos="fade-down-left">
                 {/* Descripción */}
                     <div className="font-semibold text-sm sm:text-base " >
                         <p>Puedes acercarte a nuestro local para comprar y retirar, además de ver nuestras ofertas.</p>
@@ -113,21 +113,21 @@ const handleSubmit = (e) => {
                         </a>
                     </div>
                 {/* Formulario */}
-                    <form  onSubmit={handleSubmit} className="space-y-2 bg-white p-4 rounded-lg shadow-md dark:bg-gray-800">
+                    <form  onSubmit={handleSubmit} className="space-y-2 bg-white p-4 rounded-lg shadow-md dark:bg-gray-800 mt-8">
                         <div>
                             <label className="block text-sm font-medium text-gray-600 dark:text-white">Nombre</label>
-                                <input type="text" name="from_name" value={formData.from_name} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white"/>
+                                <input type="text" name="from_name" value={formData.from_name} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" placeholder='Leandro Flores Cabello'/>
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-600 dark:text-white">Correo electrónico</label>
-                            <input type="email" name="from_email" value={formData.from_email} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white"/>
+                            <input type="email" name="from_email" value={formData.from_email} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" placeholder='leandroflorescabello@gmail.com' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" aria-label="Correo electrónico"/>
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-600 dark:text-white">Mensaje</label>
-                            <textarea name="message" value={formData.message} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" rows="5"/>
+                            <textarea name="message" value={formData.message} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" rows="5" placeholder='Ingresa tu texto aquí.'/>
                         </div>
                         <div>
-                            <button type="submit" className="w-full py-2 px-4 bg-primary hover:bg-secondary text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" aria-label="Correo electrónico">
+                            <button type="submit" className="w-full py-2 px-4 bg-primary hover:bg-secondary text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                                 Enviar Mensaje
                             </button>
                         </div>
