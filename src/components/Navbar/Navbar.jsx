@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState, useCallback} from "react";
 import Logo from "../../assets/Navbar/Logo.png";
 import { IoMdSearch } from "react-icons/io";
 import { FaCaretDown, FaCartShopping } from "react-icons/fa6";
 import DarkMode from "./DarkMode";
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Link  as ScrollLink} from 'react-scroll'
+import { useCart } from "../../Context/CartContext"
 
 // Menú para la barra de navegación
 const Menu=[
@@ -54,6 +55,15 @@ const DropdownLinks=[
 ];
 
 const Navbar = () => {
+    const location = useLocation() // Detectar la ruta actual
+    const { cart, decreaseQuantity, increaseQuantity } = useCart(); // Obtener el carrito desde el contexto
+    const [isCartVisible, setIsCartVisible] = useState(false); // Estado para mostrar el carrito
+
+    // Aseguramos que la función de toggle solo se ejecute cuando se hace clic
+    const toggleCartVisibility = useCallback(() => {
+        setIsCartVisible((prev) => !prev); // Alterna la visibilidad del carrito
+    }, []);
+
     return (
     <div className="shadow-md bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40">
       {/* Top Navbar */}
@@ -61,26 +71,24 @@ const Navbar = () => {
         <section id="Principal"></section>
             <div className="container flex justify-between items-center">
             <div>
-                <a href="#Principal" className="font-bold text-2xl sm:text-3xl flex gap-2">
+                <Link to="/" className="font-bold text-2xl sm:text-3xl flex gap-2">
                 <img src={Logo} alt="Logo" className="w-10 uppercase" />
                 NOMBRE EMPRESA
-                </a>
+                </Link>
             </div>
           {/* Barra de busqueda */}
                 <div className="flex justify-between items-center gap-4">
                     <div className="relative group hidden sm:block">
-                        <input
-                            type="text"
-                            placeholder="Buscar producto"
-                            className="w-[200px] sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-full border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary dark:border-gray-500 dark:bg-gray-800"
-                        />
+                        <input type="text" placeholder="Buscar producto" className="w-[200px] sm:w-[200px] group-hover:w-[300px] transition-all duration-300 rounded-full border border-gray-300 px-2 py-1 focus:outline-none focus:border-1 focus:border-primary dark:border-gray-500 dark:bg-gray-800"/>
                         <IoMdSearch className=" text-gray-500 group-hover:text-primary absolute top-1/2 -translate-y-1/2 right-3" />
                     </div>
                     {/* boton de compra */}
-                    <button onClick={() => alert("no disponible aún")} className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3 group" >
+                    <button onClick={toggleCartVisibility} className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3 group" >
                         <span className="group-hover:block hidden transition-all duration-200">Orden</span>
                         <FaCartShopping className=" text-xl text-white drop-shadow-sm cursor-pointer"/>
+                        <span className="text-white ml-2">{cart.length}</span> {/* Muestra el número de productos en el carrito */}
                     </button>
+                    
                     {/* DarkMode Switch */}
                     <div>
                         <DarkMode />
@@ -94,18 +102,28 @@ const Navbar = () => {
                 {
                     Menu.map((data)=>(
                         <li key={data.id}>
-                            <ScrollLink to={data.link} smooth={true} duration={500} className="inline-block px-4 hover:text-primary duration-200">{data.name}</ScrollLink>
+                            {location.pathname === "/" ? (
+                                // Enlace con desplazamiento suave en la página principal
+                                <ScrollLink to={data.link} smooth={true} duration={500} className="inline-block px-4 hover:text-primary duration-200 cursor-pointer">
+                                    {data.name}
+                                </ScrollLink>
+                            ) : (
+                                // Enlace a la principal con hash de la sección
+                                <Link to={`/#${data.link}`} className="inline-block px-4 hover:text-primary duration-200 cursor-pointer">
+                                    {data.name}
+                                </Link>
+                            )}
                         </li>
                     ))
                 }
                 {/* Menu drop */} 
                 <li className="group relative cursor-pointer">
-                    <a href="#" className="flex items-center gap-[2px] py-2">
+                    <Link to="/catalogo" className="flex items-center gap-[2px] py-2">
                         Productos
                         <span>
                             <FaCaretDown className="transition-all duration-200 group-hover:rotate-180" />
                         </span>
-                    </a>
+                    </Link>
                     <div className="absolute z-[9999] hidden group-hover:block w-[150px] rounded-md bg-white p-2 text-black shadow-md">
                         <ul>
                         {DropdownLinks.map((data)=>(
@@ -118,6 +136,34 @@ const Navbar = () => {
                     </div>
                 </li>
             </ul>
+        </div>
+        {/* Mostrar carrito cuando esté visible */}
+        <div className="relative">
+            {isCartVisible && (
+            <div className="absolute top-full right-0 bg-white p-4 shadow-lg rounded-md z-50 w-[300px] dark:bg-gray-800 dark:text-white text-black">
+                <h3 className="font-semibold text-lg text-center flex items-center justify-center gap-2"><FaCartShopping/>Tu Carrito</h3>
+                {cart.length > 0 ? (
+                <ul>
+                    {cart.map((product) => (
+                        <li key={product.id} className="flex justify-between items-center py-2">
+                            <div className="flex items-center gap-2">
+                            <span>{product.title}</span>
+                                <div className="flex items-center gap-2">
+                                    {/* Botón de decrementar cantidad */}
+                                    <button onClick={() => decreaseQuantity(product.id)} className="px-2 py-1 bg-gray-300 rounded-md">-</button>
+                                    <span>{product.quantity}</span> {/* Muestra la cantidad de ese producto */}
+                                    {/* Botón de incrementar cantidad */}
+                                    <button onClick={() => increaseQuantity(product.id)} className="px-2 py-1 bg-gray-300 rounded-md">+</button>
+                                </div>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+                ) : (
+                    <p>No hay productos en el carrito.</p>
+                )}
+                </div>
+            )}
         </div>
     </div>
     );

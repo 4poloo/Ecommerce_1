@@ -6,9 +6,12 @@ import PD from './components/ProductosDestacados/PD'
 import Contacto from './components/Contacto/Contacto'
 import AboutUs from './components/AboutUs/AboutUs'
 import Footer from "./components/Footer/FT"
+import Cat from './components/Catalogo/Cat'
+import { CartProvider } from './Context/CartContext'
 import AOS from"aos"
 import "aos/dist/aos.css"
 import { BrowserRouter as Router, Routes , Route } from 'react-router-dom'
+
 
 
 
@@ -25,21 +28,29 @@ const App = () => {
 
   return (
     <Router>
-      <div className='bg-white dark:bg-gray-900 dark:text-white duration-200'>
-        <Navbar />
-          <Routes>
-            <Route path="/" element={
-              <>
-              <Principal />
-              <Productos />
-              <PD />
-              <AboutUs />
-              <Contacto />
-              </>
-            }/>
-          </Routes>
-        <Footer />
-      </div>
+      <CartProvider>
+        <div className='bg-white dark:bg-gray-900 dark:text-white duration-200'>
+          <Navbar/>
+            <Routes>
+              <Route path="/" element={
+                <>
+                <Principal />
+                <Productos />
+                <PD />
+                <AboutUs />
+                <Contacto />
+                </>
+              }/>
+              <Route path="/catalogo" element={
+                <>
+                <Cat/>
+                </>
+              }
+              />
+            </Routes>
+          <Footer />
+        </div>
+      </CartProvider>
     </Router>
   )
 }

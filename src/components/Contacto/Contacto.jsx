@@ -116,15 +116,15 @@ const handleSubmit = (e) => {
                     <form  onSubmit={handleSubmit} className="space-y-2 bg-white p-4 rounded-lg shadow-md dark:bg-gray-800 mt-8">
                         <div>
                             <label className="block text-sm font-medium text-gray-600 dark:text-white">Nombre</label>
-                                <input type="text" name="from_name" value={formData.from_name} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" placeholder='Leandro Flores Cabello'/>
+                                <input type="text" name="from_name" value={formData.from_name} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" placeholder='Ejemplo: Leandro Flores Cabello'/>
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-600 dark:text-white">Correo electrónico</label>
-                            <input type="email" name="from_email" value={formData.from_email} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" placeholder='leandroflorescabello@gmail.com' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" aria-label="Correo electrónico"/>
+                            <input type="email" name="from_email" value={formData.from_email} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" placeholder='Ejemplo: leandroflorescabello@gmail.com' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" aria-label="Correo electrónico"/>
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-gray-600 dark:text-white">Mensaje</label>
-                            <textarea name="message" value={formData.message} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" rows="5" placeholder='Ingresa tu texto aquí.'/>
+                            <textarea name="message" value={formData.message} onChange={handleChange} required className="mt-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary block w-full sm:text-sm dark:border-gray-500 dark:bg-gray-800 dark:text-white" rows="5" placeholder='Cuéntanos cómo podemos ayudarte.'/>
                         </div>
                         <div>
                             <button type="submit" className="w-full py-2 px-4 bg-primary hover:bg-secondary text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">

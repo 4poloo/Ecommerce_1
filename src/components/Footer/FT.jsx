@@ -3,6 +3,7 @@ import logo from "./../../assets/Navbar/Logo.png"
 import { FaFacebook, FaInstagram, FaLocationArrow, FaMobile, FaWhatsapp  } from 'react-icons/fa6'
 import Banner from "./../../assets/FT/FT.jpg"
 import { Link  as ScrollLink} from 'react-scroll'
+import { Link, useLocation } from "react-router-dom";
 
 const BannerImg = {
     backgroundImage: `url(${Banner})`,
@@ -14,31 +15,18 @@ const BannerImg = {
     }
 
 const FooterLinks = [
-    {
-        id:1,
-        link:"Principal",
-        title:"Inicio",
-    },
-    {
-        id: 2,
-        link: "PD",
-        title: "Destacados",
-    },
-    {
-        id: 3,
-        link: "aboutus",
-        title: "Acerca de nosotros",
-    },
-    {
-        id: 4,
-        link: "Contacto",
-        title: "Contacto",
-    },
+    { id: 1, link: "Principal", title: "Inicio", },
+    { id: 2, link: "PD", title: "Destacados", },
+    { id: 3, link: "aboutus", title: "Acerca de nosotros", },
+    { id: 4, link: "Contacto", title: "Contacto", },
+    { id: 5, link: "catalogo", title: "Catalogo", external: true,},
 ]
 
 const FT = () => {
+    const location = useLocation();
+
     return (
-    <div style={BannerImg} className="text-white">
+    <div style={BannerImg} className="text-white dark:text-gray-400">
         <div className="container">
             <div data-aos="zoom-in" className="grid md:grid-cols-3 pb-6 pt-5">
             {/* company details */}
@@ -64,11 +52,27 @@ const FT = () => {
                     </h1>
                     <ul className="flex flex-col gap-3">
                         {FooterLinks.map((link) => (
-                        <li className="cursor-pointer hover:text-primary hover:translate-x-1 duration-300 text-gray-200" key={link.id} >
-                            <ScrollLink to={link.link} smooth={true} duration={500}>
-                                <span>{link.title}</span>
-                            </ScrollLink>
-                        </li>
+                            link.external ? (
+                                // Si el enlace es externo, usa <Link>
+                                <li className="cursor-pointer hover:text-primary hover:translate-x-1 duration-300 text-gray-200" key={link.id}>
+                                    <Link to={link.link}>
+                                        <span>{link.title}</span>
+                                    </Link>
+                                </li>
+                                ) : (
+                                // Si el enlace es interno, usa <ScrollLink> o <Link> con hash
+                                <li className="cursor-pointer hover:text-primary hover:translate-x-1 duration-300 text-gray-200" key={link.id} >
+                                    {location.pathname === "/" ? (
+                                        <ScrollLink to={link.link} smooth={true} duration={500}>
+                                            <span>{link.title}</span>
+                                        </ScrollLink>
+                                    ) : (
+                                        <Link to={`/#${link.link}`}>
+                                            <span>{link.title}</span>
+                                        </Link>
+                                    )}
+                                </li>
+                            )
                         ))}
                     </ul>
                 </div>
@@ -89,7 +93,7 @@ const FT = () => {
                 <div className="mt-6">
                     <div className="flex items-center gap-3">
                         <FaLocationArrow />
-                        <p>Arturo Rodriguez, #2728, Recoleta, RM</p>
+                        <p>Arturo Rodriguez #2728, Recoleta, RM</p>
                     </div>
                     <div className="flex items-center gap-3 mt-3">
                         <FaMobile />

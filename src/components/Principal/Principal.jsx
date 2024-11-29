@@ -3,6 +3,7 @@ import Fondo1 from "../../assets/Slide/Fondo1.png";
 import Fondo2 from "../../assets/Slide/Fondo2.png";
 import Fondo3 from "../../assets/Slide/Fondo3.png";
 import Slider from "react-slick";
+import { Link } from 'react-router-dom';
 
 const ListaImagen = [
 {
@@ -60,9 +61,9 @@ const Principal = ({ handleOrderPopup }) => {
                                 {data.descripcion}
                             </p>
                             <div data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
-                                <button onClick={handleOrderPopup} className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-2 px-5 rounded-full">
+                                <Link to="/catalogo" onClick={handleOrderPopup} className="bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-2 px-5 rounded-full">
                                     Ir a ver
-                                </button>
+                                </Link>
                             </div>
                         </div>
                         {/* Sección de imagen */}
