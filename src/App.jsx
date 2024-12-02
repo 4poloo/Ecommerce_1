@@ -7,6 +7,7 @@ import Contacto from './components/Contacto/Contacto'
 import AboutUs from './components/AboutUs/AboutUs'
 import Footer from "./components/Footer/FT"
 import Cat from './components/Catalogo/Cat'
+import Form from './components/Formulario/Form'
 import { CartProvider } from './Context/CartContext'
 import AOS from"aos"
 import "aos/dist/aos.css"
@@ -44,6 +45,12 @@ const App = () => {
               <Route path="/catalogo" element={
                 <>
                 <Cat/>
+                </>
+              }
+              />
+              <Route path="/formulario" element={
+                <>
+                <Form/>
                 </>
               }
               />

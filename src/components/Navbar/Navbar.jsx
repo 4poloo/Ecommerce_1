@@ -6,6 +6,7 @@ import DarkMode from "./DarkMode";
 import { Link, useLocation } from 'react-router-dom'
 import { Link  as ScrollLink} from 'react-scroll'
 import { useCart } from "../../Context/CartContext"
+import { CiSquareRemove } from "react-icons/ci"
 
 // Menú para la barra de navegación
 const Menu=[
@@ -56,7 +57,7 @@ const DropdownLinks=[
 
 const Navbar = () => {
     const location = useLocation() // Detectar la ruta actual
-    const { cart, decreaseQuantity, increaseQuantity } = useCart(); // Obtener el carrito desde el contexto
+    const { cart, decreaseQuantity, increaseQuantity, removeFromCart } = useCart(); // Obtener el carrito desde el contexto
     const [isCartVisible, setIsCartVisible] = useState(false); // Estado para mostrar el carrito
 
     // Aseguramos que la función de toggle solo se ejecute cuando se hace clic
@@ -140,29 +141,46 @@ const Navbar = () => {
         {/* Mostrar carrito cuando esté visible */}
         <div className="relative">
             {isCartVisible && (
-            <div className="absolute top-full right-0 bg-white p-4 shadow-lg rounded-md z-50 w-[300px] dark:bg-gray-800 dark:text-white text-black">
-                <h3 className="font-semibold text-lg text-center flex items-center justify-center gap-2"><FaCartShopping/>Tu Carrito</h3>
-                {cart.length > 0 ? (
-                <ul>
+            <div className="absolute top-full right-0 bg-white p-4 shadow-lg rounded-md z-50 w-[350px] dark:bg-gray-800 dark:text-white text-black">
+            <h3 className="font-semibold text-lg text-center flex items-center justify-center gap-2 mb-4">
+                <FaCartShopping />
+                Tu Carrito
+            </h3>
+            {cart.length > 0 ? (
+                <>
+                <ul className="space-y-4">
                     {cart.map((product) => (
-                        <li key={product.id} className="flex justify-between items-center py-2">
+                        <li key={product.id} className="flex items-center justify-between border-b border-gray-200 pb-2" >
+                            {/* Nombre del producto */}
+                            <span className="flex-1 truncate">{product.title}</span>
+                            {/* Controles de cantidad */}
                             <div className="flex items-center gap-2">
-                            <span>{product.title}</span>
-                                <div className="flex items-center gap-2">
-                                    {/* Botón de decrementar cantidad */}
-                                    <button onClick={() => decreaseQuantity(product.id)} className="px-2 py-1 bg-gray-300 rounded-md">-</button>
-                                    <span>{product.quantity}</span> {/* Muestra la cantidad de ese producto */}
-                                    {/* Botón de incrementar cantidad */}
-                                    <button onClick={() => increaseQuantity(product.id)} className="px-2 py-1 bg-gray-300 rounded-md">+</button>
-                                </div>
+                                <button onClick={() => decreaseQuantity(product.id)} className="w-8 h-8 flex items-center justify-center bg-gray-300 rounded-md dark:bg-gray-700 dark:hover:bg-primary/40 hover:bg-primary/40 " >
+                                    -
+                                </button>
+                                <span className="w-8 text-center">{product.quantity}</span>
+                                <button onClick={() => increaseQuantity(product.id)} className="w-8 h-8 flex items-center justify-center bg-gray-300 rounded-md dark:bg-gray-700 dark:hover:bg-primary/40 hover:bg-primary/40" >
+                                    +
+                                </button>
                             </div>
+                                {/* Botón de eliminar */}
+                                <button onClick={() => removeFromCart(product.id)} className="text-red-500 hover:text-red-700 transition-colors ml-4" >
+                                    <CiSquareRemove size={20} />
+                                </button>
                         </li>
                     ))}
                 </ul>
-                ) : (
-                    <p>No hay productos en el carrito.</p>
-                )}
-                </div>
+                {/* Botón para ir al formulario */}
+                    <div className="mt-4">
+                        <Link to="/formulario" className="w-full bg-gradient-to-r from-primary to-secondary text-white py-2 px-4 rounded-md text-center block" >
+                            Solicitar productos
+                        </Link>
+                    </div>
+                </>
+            ) : (
+                <p className="text-center">No hay productos en el carrito.</p>
+            )}
+            </div>
             )}
         </div>
     </div>

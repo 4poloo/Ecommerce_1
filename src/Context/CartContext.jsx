@@ -42,14 +42,20 @@ export const CartProvider = ({ children }) => {
         });
     }, []);
 
+    // Función para eliminar un producto del carrito
+    const removeFromCart = (id) => {
+        setCart((prevCart) => prevCart.filter((product) => product.id !== id));
+    };
+
     // Valor que se pasa a los consumidores del contexto
     const value = {
         cart,
         addToCart,
         increaseQuantity,
         decreaseQuantity,
+        removeFromCart,
     };
-
+    
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
